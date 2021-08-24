@@ -1,44 +1,47 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
-<CodeBlocks_project_file>
-	<FileVersion major="1" minor="6" />
-	<Project>
-		<Option title="LogInVerification" />
-		<Option pch_mode="2" />
-		<Option compiler="gcc" />
-		<Build>
-			<Target title="Debug">
-				<Option output="bin/Debug/LogInVerification" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj/Debug/" />
-				<Option type="1" />
-				<Option compiler="gcc" />
-				<Compiler>
-					<Add option="-g" />
-				</Compiler>
-			</Target>
-			<Target title="Release">
-				<Option output="bin/Release/LogInVerification" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj/Release/" />
-				<Option type="1" />
-				<Option compiler="gcc" />
-				<Compiler>
-					<Add option="-O2" />
-				</Compiler>
-				<Linker>
-					<Add option="-s" />
-				</Linker>
-			</Target>
-		</Build>
-		<Compiler>
-			<Add option="-Wall" />
-		</Compiler>
-		<Unit filename="main.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Extensions>
-			<code_completion />
-			<envvars />
-			<debugger />
-			<lib_finder disable_auto="1" />
-		</Extensions>
-	</Project>
-</CodeBlocks_project_file>
+#include <stdio.h>
+#define MAX_SIZE 100
+
+int main()
+{
+    int id, pin, num = 0;
+    printf("-------------------------------------\n");
+    printf("---------------- LOG IN -------------\n");
+    printf("-------------------------------------\n");
+    do{
+            printf("Enter ID number: ");
+            fflush(stdout);
+            while (scanf("%d", &id) != 1)
+            {
+                clear_stream(stdin);
+                printf("Invalid integer. Please try again: ");
+                fflush(stdout);
+            }
+            printf("Enter PIN: ");
+            fflush(stdout);
+            while (scanf("%d", &pin) != 1)
+            {
+                clear_stream(stdin);
+                printf("\nInvalid integer. Please try again: ");
+                fflush(stdout);
+            }
+            if( id == 190110946 && pin == 2468)
+            {
+                printf("You have successfully Logged In\n");
+                printf("ID Number: %d  \n", id);
+            }
+            else
+                printf("Invalid ID/PIN\n");
+        num++;
+        printf("-------------------------------------\n");
+    }while(num<=1000);
+    return 0;
+}
+void clear_stream(FILE *in)
+{
+    int ch;
+    clearerr(in);
+    do
+        ch = getc(in);
+    while (ch != '\n' && ch != EOF);
+    clearerr(in);
+}
