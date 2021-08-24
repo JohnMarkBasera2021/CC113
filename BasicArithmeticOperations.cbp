@@ -1,43 +1,28 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
-<CodeBlocks_project_file>
-	<FileVersion major="1" minor="6" />
-	<Project>
-		<Option title="BasicArithmeticOperations" />
-		<Option pch_mode="2" />
-		<Option compiler="gcc" />
-		<Build>
-			<Target title="Debug">
-				<Option output="bin/Debug/BasicArithmeticOperations" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj/Debug/" />
-				<Option type="1" />
-				<Option compiler="gcc" />
-				<Compiler>
-					<Add option="-g" />
-				</Compiler>
-			</Target>
-			<Target title="Release">
-				<Option output="bin/Release/BasicArithmeticOperations" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj/Release/" />
-				<Option type="1" />
-				<Option compiler="gcc" />
-				<Compiler>
-					<Add option="-O2" />
-				</Compiler>
-				<Linker>
-					<Add option="-s" />
-				</Linker>
-			</Target>
-		</Build>
-		<Compiler>
-			<Add option="-Wall" />
-		</Compiler>
-		<Unit filename="main.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Extensions>
-			<code_completion />
-			<envvars />
-			<debugger />
-		</Extensions>
-	</Project>
-</CodeBlocks_project_file>
+#include <stdio.h>
+#include <stdlib.h>
+
+void main()
+{
+    int x,y,add,mul,div,sub;
+    int num=1;
+    printf("-------------------------------\n");
+    printf("---------- CALCULATE ----------\n");
+    printf("-------------------------------\n");
+    do{
+        printf("Expected Output %d\n", num);
+        printf("Input any 2 integers: ", &x, &y);
+        scanf("%d %d", &x, &y);
+            add = x + y;
+            mul = x * y;
+            div = x / y;
+            sub = x - y;
+            num++;
+        printf("ADD = %d\n", add);
+        printf("MUL = %d\n", mul);
+        printf("DIV = %d\n", div);
+        printf("SUB = %d\n", sub);
+        printf("-------------------------------\n");
+
+    }while(num<=100);
+    return 0;
+}
