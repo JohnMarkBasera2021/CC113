@@ -1,43 +1,53 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
-<CodeBlocks_project_file>
-	<FileVersion major="1" minor="6" />
-	<Project>
-		<Option title="SwitchStatements" />
-		<Option pch_mode="2" />
-		<Option compiler="gcc" />
-		<Build>
-			<Target title="Debug">
-				<Option output="bin/Debug/SwitchStatements" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj/Debug/" />
-				<Option type="1" />
-				<Option compiler="gcc" />
-				<Compiler>
-					<Add option="-g" />
-				</Compiler>
-			</Target>
-			<Target title="Release">
-				<Option output="bin/Release/SwitchStatements" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj/Release/" />
-				<Option type="1" />
-				<Option compiler="gcc" />
-				<Compiler>
-					<Add option="-O2" />
-				</Compiler>
-				<Linker>
-					<Add option="-s" />
-				</Linker>
-			</Target>
-		</Build>
-		<Compiler>
-			<Add option="-Wall" />
-		</Compiler>
-		<Unit filename="main.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Extensions>
-			<code_completion />
-			<envvars />
-			<debugger />
-		</Extensions>
-	</Project>
-</CodeBlocks_project_file>
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int x, num=1;
+    printf("-------------------------------------\n");
+    printf("--------- CHECK INPUT INTEGER--------\n");
+    printf("-------------------------------------\n");
+    do{
+            printf("Expected Output %d\n", num);
+            printf("Input any integer: ");
+            fflush(stdout);
+            while (scanf("%d", &x) != 1)
+            {
+                clear_stream(stdin);
+                printf("Invalid integer. Please try again: ");
+                fflush(stdout);
+            }
+            switch (x > 0)
+            {
+                // Num is positive
+                case 1:
+                    printf("%d is positive.\n", x);
+                break;
+
+                // Num is either negative or zero
+                case 0:
+                    switch (x < 0)
+                    {
+                        case 1:
+                            printf("%d is negative.\n", x);
+                            break;
+                        case 0:
+                            printf("%d is zero.\n", x);
+                            break;
+                    }
+                break;
+            }
+        num++;
+        printf("-------------------------------------\n");
+    }while(num<=10);
+    return 0;
+}
+void clear_stream(FILE *in)
+{
+    int ch;
+    clearerr(in);
+    do
+        ch = getc(in);
+    while (ch != '\n' && ch != EOF);
+    clearerr(in);
+}
