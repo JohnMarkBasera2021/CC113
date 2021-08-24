@@ -1,43 +1,57 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
-<CodeBlocks_project_file>
-	<FileVersion major="1" minor="6" />
-	<Project>
-		<Option title="SumOfArray" />
-		<Option pch_mode="2" />
-		<Option compiler="gcc" />
-		<Build>
-			<Target title="Debug">
-				<Option output="bin/Debug/SumOfArray" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj/Debug/" />
-				<Option type="1" />
-				<Option compiler="gcc" />
-				<Compiler>
-					<Add option="-g" />
-				</Compiler>
-			</Target>
-			<Target title="Release">
-				<Option output="bin/Release/SumOfArray" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj/Release/" />
-				<Option type="1" />
-				<Option compiler="gcc" />
-				<Compiler>
-					<Add option="-O2" />
-				</Compiler>
-				<Linker>
-					<Add option="-s" />
-				</Linker>
-			</Target>
-		</Build>
-		<Compiler>
-			<Add option="-Wall" />
-		</Compiler>
-		<Unit filename="main.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Extensions>
-			<code_completion />
-			<envvars />
-			<debugger />
-		</Extensions>
-	</Project>
-</CodeBlocks_project_file>
+#include <stdio.h>
+#define MAX_SIZE 100
+
+//Function declaration
+void PrintArray(int arr[], int start, int len);
+int getSum(int arr[], int len);
+
+int main()
+{
+    int arr[MAX_SIZE];
+    int num, x, i;
+    printf("-------------------------------------\n");
+    printf("------------ SUM OF ARRAY -----------\n");
+        printf("-------------------------------------\n");
+        // Inputting size and elements in array
+        printf("Enter size of the array: ");
+        scanf("%d", &num);
+        printf("Enter elements in the array: ");
+        for(i=0; i<num;i++)
+        {
+            scanf("%d", &arr[i]);
+        }
+        // Printing array recursively
+        printf("Elements in the array: ");
+        PrintArray(arr, 0, num);
+        int sum;
+        sum = getSum(arr, num);
+        printf("\nSum of elements in the array: %d \n", sum);
+        printf("-------------------------------------\n");
+    return 0;
+}
+
+// Printing array recursively within a given range.
+
+void PrintArray(int arr[], int start, int len)
+{
+    // Recursion base condition
+    if(start >= len)
+        return;
+
+    // Printing the current array element
+    printf("%d ", arr[start]);
+
+    // Recursively calling printArray to print next element in the array
+    PrintArray(arr, start + 1, len);
+}
+
+int getSum(int arr[], int num)
+{
+    if (num < 0) {
+     //base case:
+     return 0;
+   } else{
+     //Recursion: calling itself
+     return arr[num] + getSum(arr, num-1);
+    }
+}
